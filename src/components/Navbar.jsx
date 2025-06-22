@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function Navbar() {
+  
   const { isUserLoggedIn, logout, user } = useAppContext();
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+
   function handleSignOut() {
     logout();
     localStorage.removeItem("pt-token");
@@ -32,7 +34,7 @@ function Navbar() {
                   onClick={() => setShowDropdown(!showDropdown)}
                 />
                 {showDropdown && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow-md z-10">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow-md z-60">
                     <div className="px-4 py-2 text-gray-700 border-b border-gray-200">
                       {user?.email ?? 'User'}
                     </div>
@@ -48,6 +50,7 @@ function Navbar() {
                   </div>
                 )}
               </div>
+              <div className='text-white font-bold'>Hello, {user?.email.split('@')[0]}</div>
             </>
           ) : (
             <div>
